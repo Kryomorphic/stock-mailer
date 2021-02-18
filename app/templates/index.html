@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Welcome to Stock Mailer {% endblock %}</h1>
+
+    {% for sub in subs %}
+        <div>
+            {{ sub['stock_ticker'] }} -> {{ sub['phone_number'] }}
+        </div>
+    {% endfor %}
+
+    <h2>update subscription</h2>
+
+        <form action="/sub" method="post">
+            <label for="stock_ticker">Stock Ticker</label>
+            <input name="stock_ticker" placeholder="AAPL"
+                      class="form-control">{{ request.form['stock_ticker'] }}</input>
+            <label for="phone_number">Phone Number</label>
+            <input type="text" name="phone_number"
+                   placeholder="xxxyyyzzzz" class="form-control"
+                   value="{{ request.form['phone_number'] }}"></input>
+            <input type="checkbox" id="remove" name="remove" value=True>
+            <label for="remove">Remove?</label><br>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+{% endblock %}
