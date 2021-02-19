@@ -10,14 +10,11 @@ auth_token = os.environ['TWILIO_AUTH_TOKEN']
 client = Client(account_sid, auth_token)
 
 
-def send_message(number, message):
+def send_message(number, msg):
     number = '+1{}'.format(number)
-    """
     message = client.messages.create(
-        body='Hi there!',
+        body=msg,
         from_='+12158762820',
-        to='+15198976215'
+        to=number
     )
-    print(message.sid)
-    """
-    print('sending message {} to {}'.format(number, message))
+    print('sending message {} to {}'.format(msg, number))
